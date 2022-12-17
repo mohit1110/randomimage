@@ -29,6 +29,23 @@
             height: 100%;
             width: 100%;
         }
+        .box span button {
+            display: none;
+            height: 50px;
+            width: 50px;
+            position: absolute;
+            top: 100%;
+            left: 100%;
+            transform: translate(-110%, -110%);
+            border-radius: 10px;
+            opacity: 0.4;
+            border-width: 0px;
+            cursor: pointer;
+        }
+        
+        .box span:hover button {
+            display: inline-block;
+        }
     </style>
 </head>
 
@@ -186,7 +203,7 @@
                     if (spantag1.length == j) {
                         stopload();
                     }
-                    spantag1[j].innerHTML = "<img src='" + this.responseText + "' alt='img'>";
+                    spantag1[j].innerHTML = "<img src='" + this.responseText + "' alt='img'> <button onclick=\"navigator.clipboard.writeText('" + this.responseText + "')\" title=\"Copy Image Link\"><img src=\"/icons/copy.svg\" alt=\"C\"></button>";
                     link = this.responseText;
                     str1 = link.indexOf("-");
                     str2 = link.indexOf("?");
