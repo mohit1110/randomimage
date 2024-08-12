@@ -369,7 +369,7 @@
         imglink = "";
         photoidarray = [];
 
-        photonamesarray = ["nature", "city", "building", "car", "girl", "flower", "fruit", "wallpapers", "3d-renders", "travel", "architecture-interior", "street-photography", "textures-patterns", "experimental", "animals", "business-work", "food-drink", "people", "spirituality", "athletics", "health", "current-events", "arts-culture", "backgrounds", "images", "things", "fireworks", "arrow", "skull", "lighthouse", "christmas-tree", "satellite", "star", "earth", "rainbow", "tree", "space", "feelings"];
+        photonamesarray = ["nature", "city", "building", "car", "girl", "flower", "fruit", "wallpapers", "3d-renders", "travel", "architecture-interior", "street-photography", "textures-patterns", "experimental", "business-work", "food-drink", "people", "spirituality", "athletics", "health", "current-events", "arts-culture", "backgrounds", "images", "things", "fireworks", "arrow", "skull", "lighthouse", "christmas-tree", "satellite", "star", "earth", "rainbow", "tree", "space", "feelings"];
         photonamesarraylength = photonamesarray.length;
         namecounter = 0;
         imgload = setInterval(() => {
@@ -383,18 +383,22 @@
                     }
                     spantag1[j].innerHTML = "<img src='" + this.responseText + "' alt='img' onclick=\"showimg(this.src)\"> <button onclick=\"navigator.clipboard.writeText('" + this.responseText + "')\" title=\"Copy Image Link\"><img src=\"copy.svg\" alt=\"C\"></button>";
                     link = this.responseText;
-                    str1 = link.indexOf("-");
-                    str2 = link.indexOf("?");
-                    photoid = link.slice(str1, str2);
+
+                    str1 = link.indexOf("?");
+                    photoid = link.slice(str1);
                     photoidmatch = 0;
+
                     for (k = 0; k < photoidarray.length; k++) {
                         if (photoidarray[k] == photoid) {
                             photoidmatch = 1;
+
                         }
                     }
+
                     if (!photoidmatch) {
                         j++;
                         photoidarray.push(photoid);
+                        photoidmatch = 0;
                     }
 
                 }
@@ -404,7 +408,7 @@
             xhttp.send();
 
 
-        }, 50, j, imglink, namecounter);
+        }, 1000, j, imglink, namecounter);
 
         function showimg(imgsrc) {
             img = document.getElementById("imgshowid");
